@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { addItem, deleteItem, importItems, updateItem } from "./actions";
-import ExportCsvButton from "./ExportCsvButton";
+import { addItem, deleteItem, updateItem } from "./actions";
 
 type Item = {
   id: number;
@@ -76,24 +75,7 @@ export default function InventoryList({ items }: { items: Item[] }) {
           Show low stock only
         </label>
 
-        <ExportCsvButton items={filteredItems} />
       </div>
-
-      <form
-        action={importItems}
-        className="flex flex-wrap items-center gap-3 rounded-md border border-dashed p-3"
-      >
-        <input
-          type="file"
-          name="csvFile"
-          accept=".csv,text/csv"
-          required
-          className="max-w-full text-sm"
-        />
-        <button className="rounded-md bg-zinc-800 px-4 py-2 text-white">
-          Import CSV
-        </button>
-      </form>
 
       {/* Add Item */}
       <form action={addItem} className="flex gap-4">

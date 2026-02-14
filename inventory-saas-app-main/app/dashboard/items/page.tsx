@@ -1,5 +1,6 @@
-import { getItems } from "./actions";
+import { getItems, importItems } from "./actions";
 import InventoryList from "./InventoryList";
+import ExportCsvButton from "./ExportCsvButton";
 
 export default async function DashboardItemsPage() {
   const items = (await getItems()) ?? [];
@@ -9,8 +10,23 @@ export default async function DashboardItemsPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-2xl font-semibold">Inventory</h1>
+        <div className="flex flex-wrap items-center gap-3">
+          <ExportCsvButton items={items} />
+          <form action={importItems} className="flex flex-wrap items-center gap-2">
+            <input
+              type="file"
+              name="csvFile"
+              accept=".csv,text/csv"
+              required
+              className="max-w-[220px] text-sm"
+            />
+            <button className="rounded-md bg-zinc-800 px-4 py-2 text-white">
+              Import CSV
+            </button>
+          </form>
+        </div>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-3">
