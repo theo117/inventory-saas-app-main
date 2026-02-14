@@ -5,8 +5,8 @@ import ExportCsvButton from "./ExportCsvButton";
 export default async function DashboardItemsPage() {
   const items = (await getItems()) ?? [];
   const totalSkus = items.length;
-  const totalUnits = items.reduce((sum, item) => sum + Number(item.quantity ?? 0), 0);
-  const lowStockCount = items.filter((item) => Number(item.quantity ?? 0) <= 5).length;
+  const totalUnits = items.reduce((sum: number, item: any) => sum + Number(item.quantity ?? 0), 0);
+  const lowStockCount = items.filter((item: any) => Number(item.quantity ?? 0) <= 5).length;
 
   return (
     <div className="space-y-6">
@@ -39,7 +39,7 @@ export default async function DashboardItemsPage() {
           <p className="text-2xl font-semibold">{totalUnits}</p>
         </div>
         <div className="rounded-lg border bg-white p-4">
-          <p className="text-sm text-zinc-500">Low Stock (<=5)</p>
+          <p className="text-sm text-zinc-500">Low Stock (&le;5)</p>
           <p className="text-2xl font-semibold">{lowStockCount}</p>
         </div>
       </div>
