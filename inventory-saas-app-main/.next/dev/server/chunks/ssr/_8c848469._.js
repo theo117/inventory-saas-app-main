@@ -25,6 +25,7 @@ function RootLayout({ children }) {
         columnNumber: 5
     }, this);
 }
+console.log("LIVE SUPABASE:", ("TURBOPACK compile-time value", "https://vahgbneahqmveqasrkbs.supabase.co"));
 }),
 "[project]/node_modules/next/dist/server/route-modules/app-page/vendored/rsc/react-jsx-dev-runtime.js [app-rsc] (ecmascript)", ((__turbopack_context__, module, exports) => {
 "use strict";

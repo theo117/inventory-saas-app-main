@@ -28,17 +28,25 @@
   :root, :host {
     --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --color-red-500: #fb2c36;
     --color-red-600: #e40014;
-    --color-green-600: #00a544;
+    --color-amber-100: #fef3c6;
+    --color-amber-800: #953d00;
+    --color-blue-500: #3080ff;
     --color-blue-600: #155dfc;
+    --color-zinc-50: #fafafa;
     --color-zinc-100: #f4f4f5;
+    --color-zinc-300: #d4d4d8;
     --color-zinc-500: #71717b;
     --color-zinc-600: #52525c;
     --color-zinc-700: #3f3f46;
+    --color-zinc-800: #27272a;
     --color-zinc-900: #18181b;
     --color-black: #000;
     --color-white: #fff;
     --spacing: .25rem;
+    --text-xs: .75rem;
+    --text-xs--line-height: calc(1 / .75);
     --text-sm: .875rem;
     --text-sm--line-height: calc(1.25 / .875);
     --text-lg: 1.125rem;
@@ -49,6 +57,7 @@
     --text-2xl--line-height: calc(2 / 1.5);
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
+    --font-weight-bold: 700;
     --radius-md: .375rem;
     --radius-lg: .5rem;
     --default-font-family: var(--font-sans);
@@ -57,13 +66,19 @@
 
   @supports (color: lab(0% 0 0)) {
     :root, :host {
+      --color-red-500: lab(55.4814% 75.0732 48.8528);
       --color-red-600: lab(48.4493% 77.4328 61.5452);
-      --color-green-600: lab(59.0978% -58.6621 41.2579);
+      --color-amber-100: lab(95.916% -1.2165 23.111);
+      --color-amber-800: lab(37.8823% 37.1699 52.2718);
+      --color-blue-500: lab(54.1736% 13.3368 -74.6839);
       --color-blue-600: lab(44.0605% 29.0279 -86.0352);
+      --color-zinc-50: lab(98.26% 0 0);
       --color-zinc-100: lab(96.1634% .0993013 -.364029);
+      --color-zinc-300: lab(84.9837% .601262 -2.17985);
       --color-zinc-500: lab(47.8878% 1.65477 -5.77283);
       --color-zinc-600: lab(35.1166% 1.7821 -6.1173);
       --color-zinc-700: lab(26.8019% 1.35386 -4.68303);
+      --color-zinc-800: lab(15.7305% .613749 -2.16959);
       --color-zinc-900: lab(8.30603% .618212 -2.16573);
     }
   }
@@ -318,12 +333,20 @@
 @layer components;
 
 @layer utilities {
+  .mt-1 {
+    margin-top: calc(var(--spacing) * 1);
+  }
+
   .mt-4 {
     margin-top: calc(var(--spacing) * 4);
   }
 
   .mt-8 {
     margin-top: calc(var(--spacing) * 8);
+  }
+
+  .mb-2 {
+    margin-bottom: calc(var(--spacing) * 2);
   }
 
   .mb-4 {
@@ -334,8 +357,20 @@
     margin-bottom: calc(var(--spacing) * 6);
   }
 
+  .ml-2 {
+    margin-left: calc(var(--spacing) * 2);
+  }
+
+  .block {
+    display: block;
+  }
+
   .flex {
     display: flex;
+  }
+
+  .grid {
+    display: grid;
   }
 
   .hidden {
@@ -344,6 +379,10 @@
 
   .inline-block {
     display: inline-block;
+  }
+
+  .inline-flex {
+    display: inline-flex;
   }
 
   .h-64 {
@@ -362,10 +401,6 @@
     width: calc(var(--spacing) * 24);
   }
 
-  .w-32 {
-    width: calc(var(--spacing) * 32);
-  }
-
   .w-64 {
     width: calc(var(--spacing) * 64);
   }
@@ -374,12 +409,24 @@
     width: 100%;
   }
 
+  .max-w-\[220px\] {
+    max-width: 220px;
+  }
+
+  .min-w-56 {
+    min-width: calc(var(--spacing) * 56);
+  }
+
   .flex-1 {
     flex: 1;
   }
 
   .flex-col {
     flex-direction: column;
+  }
+
+  .flex-wrap {
+    flex-wrap: wrap;
   }
 
   .items-center {
@@ -404,6 +451,12 @@
 
   .gap-4 {
     gap: calc(var(--spacing) * 4);
+  }
+
+  :where(.space-y-2 > :not(:last-child)) {
+    --tw-space-y-reverse: 0;
+    margin-block-start: calc(calc(var(--spacing) * 2) * var(--tw-space-y-reverse));
+    margin-block-end: calc(calc(var(--spacing) * 2) * calc(1 - var(--tw-space-y-reverse)));
   }
 
   :where(.space-y-6 > :not(:last-child)) {
@@ -448,12 +501,24 @@
     border-right-width: 1px;
   }
 
+  .border-zinc-300 {
+    border-color: var(--color-zinc-300);
+  }
+
+  .bg-amber-100 {
+    background-color: var(--color-amber-100);
+  }
+
   .bg-black {
     background-color: var(--color-black);
   }
 
   .bg-blue-600 {
     background-color: var(--color-blue-600);
+  }
+
+  .bg-red-600 {
+    background-color: var(--color-red-600);
   }
 
   .bg-white {
@@ -464,12 +529,24 @@
     background-color: var(--color-zinc-100);
   }
 
+  .bg-zinc-800 {
+    background-color: var(--color-zinc-800);
+  }
+
   .bg-zinc-900 {
     background-color: var(--color-zinc-900);
   }
 
   .p-2 {
     padding: calc(var(--spacing) * 2);
+  }
+
+  .p-3 {
+    padding: calc(var(--spacing) * 3);
+  }
+
+  .p-4 {
+    padding: calc(var(--spacing) * 4);
   }
 
   .p-6 {
@@ -490,6 +567,10 @@
 
   .px-4 {
     padding-inline: calc(var(--spacing) * 4);
+  }
+
+  .py-0\.5 {
+    padding-block: calc(var(--spacing) * .5);
   }
 
   .py-1 {
@@ -524,6 +605,16 @@
     line-height: var(--tw-leading, var(--text-xl--line-height));
   }
 
+  .text-xs {
+    font-size: var(--text-xs);
+    line-height: var(--tw-leading, var(--text-xs--line-height));
+  }
+
+  .font-bold {
+    --tw-font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-bold);
+  }
+
   .font-medium {
     --tw-font-weight: var(--font-weight-medium);
     font-weight: var(--font-weight-medium);
@@ -534,8 +625,8 @@
     font-weight: var(--font-weight-semibold);
   }
 
-  .text-green-600 {
-    color: var(--color-green-600);
+  .text-amber-800 {
+    color: var(--color-amber-800);
   }
 
   .text-red-600 {
@@ -564,20 +655,46 @@
   }
 
   @media (hover: hover) {
+    .hover\:bg-blue-500:hover {
+      background-color: var(--color-blue-500);
+    }
+  }
+
+  @media (hover: hover) {
+    .hover\:bg-red-500:hover {
+      background-color: var(--color-red-500);
+    }
+  }
+
+  @media (hover: hover) {
+    .hover\:bg-zinc-50:hover {
+      background-color: var(--color-zinc-50);
+    }
+  }
+
+  @media (hover: hover) {
     .hover\:bg-zinc-700:hover {
       background-color: var(--color-zinc-700);
     }
   }
 
   @media (hover: hover) {
-    .hover\:text-black:hover {
-      color: var(--color-black);
+    .hover\:underline:hover {
+      text-decoration-line: underline;
     }
   }
 
-  @media (hover: hover) {
-    .hover\:underline:hover {
-      text-decoration-line: underline;
+  .disabled\:cursor-not-allowed:disabled {
+    cursor: not-allowed;
+  }
+
+  .disabled\:opacity-50:disabled {
+    opacity: .5;
+  }
+
+  @media (min-width: 40rem) {
+    .sm\:grid-cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 }

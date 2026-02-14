@@ -1,0 +1,50 @@
+{
+  "node": {
+    "001130e10d4eee3c57bdbe243e47dcecd75ee72810": {
+      "workers": {
+        "app/dashboard/users/page": {
+          "moduleId": 29356,
+          "async": false,
+          "exportedName": "logout",
+          "filename": "app/dashboard/logout-action.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/users/page": "action-browser"
+      },
+      "exportedName": "logout",
+      "filename": "app/dashboard/logout-action.ts"
+    },
+    "409c0a1a55c87213fca17d4e9c31617f122e18e432": {
+      "workers": {
+        "app/dashboard/users/page": {
+          "moduleId": 29356,
+          "async": false,
+          "exportedName": "promoteUser",
+          "filename": "app/dashboard/users/actions.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/users/page": "action-browser"
+      },
+      "exportedName": "promoteUser",
+      "filename": "app/dashboard/users/actions.ts"
+    },
+    "40212d22676777f9e18d55dc9618e222f6c5690895": {
+      "workers": {
+        "app/dashboard/users/page": {
+          "moduleId": 29356,
+          "async": false,
+          "exportedName": "demoteUser",
+          "filename": "app/dashboard/users/actions.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/users/page": "action-browser"
+      },
+      "exportedName": "demoteUser",
+      "filename": "app/dashboard/users/actions.ts"
+    }
+  },
+  "edge": {}
+}

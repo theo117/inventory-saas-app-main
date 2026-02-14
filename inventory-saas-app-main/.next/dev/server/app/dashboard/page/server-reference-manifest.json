@@ -10,7 +10,7 @@
         }
       },
       "layer": {
-        "app/dashboard/page": "rsc"
+        "app/dashboard/page": "action-browser"
       },
       "exportedName": "logout",
       "filename": "app/dashboard/logout-action.ts"
@@ -58,6 +58,21 @@
         "app/dashboard/page": "rsc"
       },
       "exportedName": "deleteItem",
+      "filename": "app/dashboard/items/actions.tsx"
+    },
+    "407a9792dd6171413cfdcdf8bb1e041d390d087657": {
+      "workers": {
+        "app/dashboard/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/page/actions.js { ACTIONS_MODULE0 => \"[project]/app/dashboard/logout-action.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/app/dashboard/items/actions.tsx [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "importItems",
+          "filename": "app/dashboard/items/actions.tsx"
+        }
+      },
+      "layer": {
+        "app/dashboard/page": "rsc"
+      },
+      "exportedName": "importItems",
       "filename": "app/dashboard/items/actions.tsx"
     },
     "40cf5f7e8d2f6ce930ffc7a69b9f19fe0b8de22c97": {

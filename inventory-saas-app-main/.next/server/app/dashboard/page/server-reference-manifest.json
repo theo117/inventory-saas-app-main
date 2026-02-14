@@ -1,0 +1,95 @@
+{
+  "node": {
+    "001130e10d4eee3c57bdbe243e47dcecd75ee72810": {
+      "workers": {
+        "app/dashboard/page": {
+          "moduleId": 73099,
+          "async": false,
+          "exportedName": "logout",
+          "filename": "app/dashboard/logout-action.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/page": "action-browser"
+      },
+      "exportedName": "logout",
+      "filename": "app/dashboard/logout-action.ts"
+    },
+    "001418c00776d3dcf1fabd1eb0220371d7ec966730": {
+      "workers": {
+        "app/dashboard/page": {
+          "moduleId": 73099,
+          "async": false,
+          "exportedName": "getItems",
+          "filename": "app/dashboard/items/actions.tsx"
+        }
+      },
+      "layer": {
+        "app/dashboard/page": "rsc"
+      },
+      "exportedName": "getItems",
+      "filename": "app/dashboard/items/actions.tsx"
+    },
+    "402ba70d10209d9fa5c36b78cfe23378d2fb5a040b": {
+      "workers": {
+        "app/dashboard/page": {
+          "moduleId": 73099,
+          "async": false,
+          "exportedName": "deleteItem",
+          "filename": "app/dashboard/items/actions.tsx"
+        }
+      },
+      "layer": {
+        "app/dashboard/page": "rsc"
+      },
+      "exportedName": "deleteItem",
+      "filename": "app/dashboard/items/actions.tsx"
+    },
+    "409ab395cf882985090ad88d94091c700a8e05eb33": {
+      "workers": {
+        "app/dashboard/page": {
+          "moduleId": 73099,
+          "async": false,
+          "exportedName": "addItem",
+          "filename": "app/dashboard/items/actions.tsx"
+        }
+      },
+      "layer": {
+        "app/dashboard/page": "rsc"
+      },
+      "exportedName": "addItem",
+      "filename": "app/dashboard/items/actions.tsx"
+    },
+    "40b63e78d26dffe07382a6732bec3b494a64c87812": {
+      "workers": {
+        "app/dashboard/page": {
+          "moduleId": 73099,
+          "async": false,
+          "exportedName": "updateItem",
+          "filename": "app/dashboard/items/actions.tsx"
+        }
+      },
+      "layer": {
+        "app/dashboard/page": "rsc"
+      },
+      "exportedName": "updateItem",
+      "filename": "app/dashboard/items/actions.tsx"
+    },
+    "40bcf8930122b9e89881f990bc185d432af2dfd301": {
+      "workers": {
+        "app/dashboard/page": {
+          "moduleId": 73099,
+          "async": false,
+          "exportedName": "importItems",
+          "filename": "app/dashboard/items/actions.tsx"
+        }
+      },
+      "layer": {
+        "app/dashboard/page": "rsc"
+      },
+      "exportedName": "importItems",
+      "filename": "app/dashboard/items/actions.tsx"
+    }
+  },
+  "edge": {}
+}
