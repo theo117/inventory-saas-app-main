@@ -28,11 +28,13 @@ async function logout() {
 "[project]/app/dashboard/users/actions.ts [app-rsc] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
-/* __next_internal_action_entry_do_not_use__ [{"400e770815a0db3169cf74707fd7525c7ab59fdff0":"demoteUser","407cf11958b164250ca933e461d15b7052fa267197":"promoteUser"},"",""] */ __turbopack_context__.s([
+/* __next_internal_action_entry_do_not_use__ [{"400e770815a0db3169cf74707fd7525c7ab59fdff0":"demoteUser","407cf11958b164250ca933e461d15b7052fa267197":"promoteUser","40cdfe61fc21370a74c4da81d07591a7bc14eb1043":"updateUserRole"},"",""] */ __turbopack_context__.s([
     "demoteUser",
     ()=>demoteUser,
     "promoteUser",
-    ()=>promoteUser
+    ()=>promoteUser,
+    "updateUserRole",
+    ()=>updateUserRole
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/build/webpack/loaders/next-flight-loader/server-reference.js [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$supabase$2d$server$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/app/lib/supabase-server.ts [app-rsc] (ecmascript)");
@@ -41,6 +43,31 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 ;
 ;
 ;
+const ALLOWED_ROLES = new Set([
+    "admin",
+    "staff"
+]);
+async function updateUserRole(formData) {
+    const supabase = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$supabase$2d$server$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["createSupabaseServerClient"])();
+    const me = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$get$2d$profile$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getProfile"])();
+    if (!me || me.role !== "admin") throw new Error("Not allowed");
+    const userId = String(formData.get("userId") ?? "");
+    const role = String(formData.get("role") ?? "");
+    if (!userId || !ALLOWED_ROLES.has(role)) {
+        throw new Error("Invalid role update");
+    }
+    if (userId === me.id && role !== "admin") {
+        throw new Error("Cannot demote your own admin account");
+    }
+    await supabase.from("profiles").update({
+        role
+    }).eq("id", userId);
+    await supabase.from("audit_logs").insert({
+        actor_id: me.id,
+        action: "UPDATED_USER_ROLE",
+        target: `${userId}:${role}`
+    });
+}
 async function promoteUser(userId) {
     const supabase = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$supabase$2d$server$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["createSupabaseServerClient"])();
     const me = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$lib$2f$get$2d$profile$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getProfile"])();
@@ -71,9 +98,11 @@ async function demoteUser(userId) {
 }
 ;
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$action$2d$validate$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["ensureServerEntryExports"])([
+    updateUserRole,
     promoteUser,
     demoteUser
 ]);
+(0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(updateUserRole, "40cdfe61fc21370a74c4da81d07591a7bc14eb1043", null);
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(promoteUser, "407cf11958b164250ca933e461d15b7052fa267197", null);
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(demoteUser, "400e770815a0db3169cf74707fd7525c7ab59fdff0", null);
 }),
@@ -83,6 +112,7 @@ async function demoteUser(userId) {
 __turbopack_context__.s([]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$dashboard$2f$logout$2d$action$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/app/dashboard/logout-action.ts [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$dashboard$2f$users$2f$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/app/dashboard/users/actions.ts [app-rsc] (ecmascript)");
+;
 ;
 ;
 ;
@@ -96,7 +126,9 @@ __turbopack_context__.s([
     "400e770815a0db3169cf74707fd7525c7ab59fdff0",
     ()=>__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$dashboard$2f$users$2f$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["demoteUser"],
     "407cf11958b164250ca933e461d15b7052fa267197",
-    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$dashboard$2f$users$2f$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["promoteUser"]
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$dashboard$2f$users$2f$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["promoteUser"],
+    "40cdfe61fc21370a74c4da81d07591a7bc14eb1043",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$dashboard$2f$users$2f$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["updateUserRole"]
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f2e$next$2d$internal$2f$server$2f$app$2f$dashboard$2f$users$2f$page$2f$actions$2e$js__$7b$__ACTIONS_MODULE0__$3d3e$__$225b$project$5d2f$app$2f$dashboard$2f$logout$2d$action$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29222c$__ACTIONS_MODULE1__$3d3e$__$225b$project$5d2f$app$2f$dashboard$2f$users$2f$actions$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$2922$__$7d$__$5b$app$2d$rsc$5d$__$28$server__actions__loader$2c$__ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i('[project]/.next-internal/server/app/dashboard/users/page/actions.js { ACTIONS_MODULE0 => "[project]/app/dashboard/logout-action.ts [app-rsc] (ecmascript)", ACTIONS_MODULE1 => "[project]/app/dashboard/users/actions.ts [app-rsc] (ecmascript)" } [app-rsc] (server actions loader, ecmascript) <locals>');
 var __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$dashboard$2f$logout$2d$action$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/app/dashboard/logout-action.ts [app-rsc] (ecmascript)");

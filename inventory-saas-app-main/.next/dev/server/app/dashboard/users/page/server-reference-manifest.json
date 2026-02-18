@@ -15,21 +15,6 @@
       "exportedName": "logout",
       "filename": "app/dashboard/logout-action.ts"
     },
-    "407cf11958b164250ca933e461d15b7052fa267197": {
-      "workers": {
-        "app/dashboard/users/page": {
-          "moduleId": "[project]/.next-internal/server/app/dashboard/users/page/actions.js { ACTIONS_MODULE0 => \"[project]/app/dashboard/logout-action.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/app/dashboard/users/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
-          "async": false,
-          "exportedName": "promoteUser",
-          "filename": "app/dashboard/users/actions.ts"
-        }
-      },
-      "layer": {
-        "app/dashboard/users/page": "action-browser"
-      },
-      "exportedName": "promoteUser",
-      "filename": "app/dashboard/users/actions.ts"
-    },
     "400e770815a0db3169cf74707fd7525c7ab59fdff0": {
       "workers": {
         "app/dashboard/users/page": {
@@ -40,9 +25,39 @@
         }
       },
       "layer": {
-        "app/dashboard/users/page": "action-browser"
+        "app/dashboard/users/page": "rsc"
       },
       "exportedName": "demoteUser",
+      "filename": "app/dashboard/users/actions.ts"
+    },
+    "407cf11958b164250ca933e461d15b7052fa267197": {
+      "workers": {
+        "app/dashboard/users/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/users/page/actions.js { ACTIONS_MODULE0 => \"[project]/app/dashboard/logout-action.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/app/dashboard/users/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "promoteUser",
+          "filename": "app/dashboard/users/actions.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/users/page": "rsc"
+      },
+      "exportedName": "promoteUser",
+      "filename": "app/dashboard/users/actions.ts"
+    },
+    "40cdfe61fc21370a74c4da81d07591a7bc14eb1043": {
+      "workers": {
+        "app/dashboard/users/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/users/page/actions.js { ACTIONS_MODULE0 => \"[project]/app/dashboard/logout-action.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/app/dashboard/users/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "updateUserRole",
+          "filename": "app/dashboard/users/actions.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/users/page": "rsc"
+      },
+      "exportedName": "updateUserRole",
       "filename": "app/dashboard/users/actions.ts"
     }
   },
