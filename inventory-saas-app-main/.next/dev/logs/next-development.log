@@ -1,65 +1,16 @@
-[00:00:02.271] Server  LOG     ✓ Ready in 1701ms
-[00:00:03.107] Server  LOG     LIVE SUPABASE: "https://vahgbneahqmveqasrkbs.supabase.co"
-[00:00:03.115] Server  LOG     SUPABASE URL: "https://vahgbneahqmveqasrkbs.supabase.co"
-[00:00:04.876] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:25.981] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+[00:00:07.787] Server  LOG     ✓ Ready in 6.8s
+[00:00:16.599] Server  LOG     LIVE SUPABASE: "https://vahgbneahqmveqasrkbs.supabase.co"
+[00:00:18.029] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:39.093] Server  LOG     SUPABASE URL: "https://vahgbneahqmveqasrkbs.supabase.co"
+[00:00:41.434] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
        please check the style of container, or the props width(100%) and height(100%),
        or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
        height and width.
-[00:00:25.981] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+[00:00:41.434] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
        please check the style of container, or the props width(100%) and height(100%),
        or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
        height and width.
-[00:01:51.462] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:03:08.346] Server  ERROR   ⨯ Error: Not allowed
-[00:03:08.503] Browser ERROR   uncaughtError: Error: Not allowed
-[00:04:49.478] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:05:01.044] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
-       please check the style of container, or the props width(100%) and height(100%),
-       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
-       height and width.
-[00:05:01.044] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
-       please check the style of container, or the props width(100%) and height(100%),
-       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
-       height and width.
-[00:08:47.603] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:09:11.737] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:15:00.229] Server  LOG     ✓ Compiled in 997ms
-[00:15:01.462] Browser ERROR   In HTML, %s cannot be a child of <%s>.%s
-This will cause a hydration error.%s <td> div  
-
-  ...
-    <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
-      <LoadingBoundary name="items/" loading={null}>
-        <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
-          <RedirectBoundary>
-            <RedirectErrorBoundary router={{...}}>
-              <InnerLayoutRouter url="/dashboard..." tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} ...>
-                <SegmentViewNode type="page" pagePath="dashboard/...">
-                  <SegmentTrieNode>
-                  <DashboardItemsPage>
-                    <div className="space-y-6">
-                      <div>
-                      <div>
-                      <div className="bg-white r...">
-                        <InventoryList items={[...]}>
-                          <div className="space-y-6">
-                            <div>
-                            <form>
-                            <ul className="divide-y">
-                              <li className="py-3 flex ...">
->                               <div>
-                                  <p>
->                                 <td className="px-4 py-2">
-                                  ...
-                                ...
-                ...
-              ...
-
-[00:16:28.689] Server  LOG     SUPABASE URL: "https://vahgbneahqmveqasrkbs.supabase.co"
-[00:16:33.390] Server  LOG     LIVE SUPABASE: "https://vahgbneahqmveqasrkbs.supabase.co"
-[00:16:34.854] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:16:35.037] Browser ERROR   In HTML, %s cannot be a child of <%s>.%s
+[00:00:53.737] Browser ERROR   In HTML, %s cannot be a child of <%s>.%s
 This will cause a hydration error.%s <td> div  
 
   ...
@@ -91,58 +42,11 @@ This will cause a hydration error.%s <td> div
                 ...
               ...
 
-[00:16:35.037] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-https://react.dev/link/hydration-mismatch
-[00:17:15.269] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:17:15.443] Browser ERROR   In HTML, %s cannot be a child of <%s>.%s
-This will cause a hydration error.%s <td> div  
-
-  ...
-    <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
-      <LoadingBoundary name="items/" loading={null}>
-        <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
-          <RedirectBoundary>
-            <RedirectErrorBoundary router={{...}}>
-              <InnerLayoutRouter url="/dashboard..." tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} ...>
-                <SegmentViewNode type="page" pagePath="dashboard/...">
-                  <SegmentTrieNode>
-                  <DashboardItemsPage>
-                    <div className="space-y-6">
-                      <div>
-                      <div>
-                      <div className="bg-white r...">
-                        <InventoryList items={[...]}>
-                          <div className="space-y-6">
-                            <div>
-                            <form>
-                            <ul className="divide-y">
-                              <li className="py-3 flex ...">
->                               <div>
-                                  <p>
->                                 <td className="px-4 py-2">
-                                  ...
-                                ...
-                              ...
-                ...
-              ...
-
-[00:17:15.443] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-https://react.dev/link/hydration-mismatch
+[00:01:00.572] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:01:00.572] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.

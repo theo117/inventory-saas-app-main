@@ -13,11 +13,18 @@
           "async": false,
           "exportedName": "logout",
           "filename": "app/dashboard/logout-action.ts"
+        },
+        "app/dashboard/users/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/users/page/actions.js { ACTIONS_MODULE0 => \"[project]/app/dashboard/logout-action.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/app/dashboard/users/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "logout",
+          "filename": "app/dashboard/logout-action.ts"
         }
       },
       "layer": {
         "app/dashboard/items/page": "action-browser",
-        "app/dashboard/page": "action-browser"
+        "app/dashboard/page": "action-browser",
+        "app/dashboard/users/page": "action-browser"
       },
       "filename": "app/dashboard/logout-action.ts",
       "exportedName": "logout"
@@ -131,6 +138,36 @@
       },
       "filename": "app/dashboard/items/actions.tsx",
       "exportedName": "addItem"
+    },
+    "407cf11958b164250ca933e461d15b7052fa267197": {
+      "workers": {
+        "app/dashboard/users/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/users/page/actions.js { ACTIONS_MODULE0 => \"[project]/app/dashboard/logout-action.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/app/dashboard/users/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "promoteUser",
+          "filename": "app/dashboard/users/actions.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/users/page": "action-browser"
+      },
+      "filename": "app/dashboard/users/actions.ts",
+      "exportedName": "promoteUser"
+    },
+    "400e770815a0db3169cf74707fd7525c7ab59fdff0": {
+      "workers": {
+        "app/dashboard/users/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/users/page/actions.js { ACTIONS_MODULE0 => \"[project]/app/dashboard/logout-action.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/app/dashboard/users/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "demoteUser",
+          "filename": "app/dashboard/users/actions.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/users/page": "action-browser"
+      },
+      "filename": "app/dashboard/users/actions.ts",
+      "exportedName": "demoteUser"
     }
   },
   "edge": {},
