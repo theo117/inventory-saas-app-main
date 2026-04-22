@@ -8,7 +8,11 @@ export async function GET(request: Request) {
   const tokenHash = searchParams.get("token_hash")
   const type = searchParams.get("type") as EmailOtpType | null
   const nextParam = searchParams.get("next")
-  const fallbackNext = tokenHash && type ? "/auth/confirmed" : "/dashboard"
+  const isEmailConfirmation =
+    type === "signup" ||
+    type === "invite" ||
+    Boolean(tokenHash && type)
+  const fallbackNext = isEmailConfirmation ? "/auth/confirmed" : "/dashboard"
   const next = nextParam && nextParam.startsWith("/") ? nextParam : fallbackNext
 
   const supabase = await createSupabaseServerClient()
