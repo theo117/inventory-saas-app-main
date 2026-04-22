@@ -6,6 +6,15 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/app/lib/supabase-browser";
 
+function getAuthCallbackUrl() {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  const baseUrl = siteUrl && /^https?:\/\//.test(siteUrl)
+    ? siteUrl
+    : window.location.origin;
+
+  return `${baseUrl.replace(/\/$/, "")}/auth/callback`;
+}
+
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,7 +45,7 @@ export default function LoginPage() {
       email,
       password,
       options: {
-        emailRedirectTo: `${window.location.origin}/auth/callback`,
+        emailRedirectTo: getAuthCallbackUrl(),
       },
     });
 
