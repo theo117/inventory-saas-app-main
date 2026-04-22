@@ -1,9 +1,9 @@
 {
   "node": {
-    "001130e10d4eee3c57bdbe243e47dcecd75ee72810": {
+    "00167a51e30289883a7c59ce4d82ee4b8737c9bd2e": {
       "workers": {
         "app/dashboard/items/page": {
-          "moduleId": 35398,
+          "moduleId": 25988,
           "async": false,
           "exportedName": "logout",
           "filename": "app/dashboard/logout-action.ts"
@@ -14,6 +14,81 @@
       },
       "exportedName": "logout",
       "filename": "app/dashboard/logout-action.ts"
+    },
+    "00fdb031f6100364b016c07c859f79de61c8db4335": {
+      "workers": {
+        "app/dashboard/items/page": {
+          "moduleId": 25988,
+          "async": false,
+          "exportedName": "getItems",
+          "filename": "app/dashboard/items/actions.tsx"
+        }
+      },
+      "layer": {
+        "app/dashboard/items/page": "rsc"
+      },
+      "exportedName": "getItems",
+      "filename": "app/dashboard/items/actions.tsx"
+    },
+    "402b194f5daea449fce51a10f1bcb30c3c9adfd4bf": {
+      "workers": {
+        "app/dashboard/items/page": {
+          "moduleId": 25988,
+          "async": false,
+          "exportedName": "importItems",
+          "filename": "app/dashboard/items/actions.tsx"
+        }
+      },
+      "layer": {
+        "app/dashboard/items/page": "rsc"
+      },
+      "exportedName": "importItems",
+      "filename": "app/dashboard/items/actions.tsx"
+    },
+    "404f964b4a5667665fa8cf52748eb18570bae15096": {
+      "workers": {
+        "app/dashboard/items/page": {
+          "moduleId": 25988,
+          "async": false,
+          "exportedName": "deleteItem",
+          "filename": "app/dashboard/items/actions.tsx"
+        }
+      },
+      "layer": {
+        "app/dashboard/items/page": "action-browser"
+      },
+      "exportedName": "deleteItem",
+      "filename": "app/dashboard/items/actions.tsx"
+    },
+    "408ea8aaec44cd5011a781c1f81e1f8ad3bc990343": {
+      "workers": {
+        "app/dashboard/items/page": {
+          "moduleId": 25988,
+          "async": false,
+          "exportedName": "addItem",
+          "filename": "app/dashboard/items/actions.tsx"
+        }
+      },
+      "layer": {
+        "app/dashboard/items/page": "action-browser"
+      },
+      "exportedName": "addItem",
+      "filename": "app/dashboard/items/actions.tsx"
+    },
+    "40e4befbf07200a1dc89f4b59b75564084f59e77e1": {
+      "workers": {
+        "app/dashboard/items/page": {
+          "moduleId": 25988,
+          "async": false,
+          "exportedName": "updateItem",
+          "filename": "app/dashboard/items/actions.tsx"
+        }
+      },
+      "layer": {
+        "app/dashboard/items/page": "action-browser"
+      },
+      "exportedName": "updateItem",
+      "filename": "app/dashboard/items/actions.tsx"
     }
   },
   "edge": {}

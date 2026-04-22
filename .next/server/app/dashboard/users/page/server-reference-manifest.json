@@ -1,6 +1,6 @@
 {
   "node": {
-    "001130e10d4eee3c57bdbe243e47dcecd75ee72810": {
+    "00167a51e30289883a7c59ce4d82ee4b8737c9bd2e": {
       "workers": {
         "app/dashboard/users/page": {
           "moduleId": 29356,
@@ -15,22 +15,7 @@
       "exportedName": "logout",
       "filename": "app/dashboard/logout-action.ts"
     },
-    "409c0a1a55c87213fca17d4e9c31617f122e18e432": {
-      "workers": {
-        "app/dashboard/users/page": {
-          "moduleId": 29356,
-          "async": false,
-          "exportedName": "promoteUser",
-          "filename": "app/dashboard/users/actions.ts"
-        }
-      },
-      "layer": {
-        "app/dashboard/users/page": "action-browser"
-      },
-      "exportedName": "promoteUser",
-      "filename": "app/dashboard/users/actions.ts"
-    },
-    "40212d22676777f9e18d55dc9618e222f6c5690895": {
+    "400aec653f2bf9becd22eedf1bb9c00d79e4041fe6": {
       "workers": {
         "app/dashboard/users/page": {
           "moduleId": 29356,
@@ -40,9 +25,39 @@
         }
       },
       "layer": {
-        "app/dashboard/users/page": "action-browser"
+        "app/dashboard/users/page": "rsc"
       },
       "exportedName": "demoteUser",
+      "filename": "app/dashboard/users/actions.ts"
+    },
+    "403ef0b1913e17f039deabf9b35e0d7e14be836029": {
+      "workers": {
+        "app/dashboard/users/page": {
+          "moduleId": 29356,
+          "async": false,
+          "exportedName": "updateUserRole",
+          "filename": "app/dashboard/users/actions.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/users/page": "rsc"
+      },
+      "exportedName": "updateUserRole",
+      "filename": "app/dashboard/users/actions.ts"
+    },
+    "40d06aaffafbfd92c096f71493b5c47665902d8a50": {
+      "workers": {
+        "app/dashboard/users/page": {
+          "moduleId": 29356,
+          "async": false,
+          "exportedName": "promoteUser",
+          "filename": "app/dashboard/users/actions.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/users/page": "rsc"
+      },
+      "exportedName": "promoteUser",
       "filename": "app/dashboard/users/actions.ts"
     }
   },
