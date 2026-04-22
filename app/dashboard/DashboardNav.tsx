@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { logout } from "./logout-action"
 
 export default function DashboardNav({ role }: { role: string }) {
   return (
@@ -16,7 +17,7 @@ export default function DashboardNav({ role }: { role: string }) {
         )}
       </nav>
 
-      <form action={require("./logout-action").logout}>
+      <form action={logout}>
         <button className="mt-8 w-full rounded bg-zinc-900 py-2 text-white hover:bg-zinc-700">
           Sign out
         </button>

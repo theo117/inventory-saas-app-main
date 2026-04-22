@@ -11,6 +11,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-console.log("LIVE SUPABASE:", process.env.NEXT_PUBLIC_SUPABASE_URL)
-

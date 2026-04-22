@@ -2,11 +2,17 @@ import { getItems, importItems } from "./actions";
 import InventoryList from "./InventoryList";
 import ExportCsvButton from "./ExportCsvButton";
 
+type InventoryItem = {
+  id: number;
+  name: string;
+  quantity: number;
+};
+
 export default async function DashboardItemsPage() {
-  const items = (await getItems()) ?? [];
+  const items: InventoryItem[] = (await getItems()) ?? [];
   const totalSkus = items.length;
-  const totalUnits = items.reduce((sum: number, item: any) => sum + Number(item.quantity ?? 0), 0);
-  const lowStockCount = items.filter((item: any) => Number(item.quantity ?? 0) <= 5).length;
+  const totalUnits = items.reduce((sum, item) => sum + Number(item.quantity ?? 0), 0);
+  const lowStockCount = items.filter((item) => Number(item.quantity ?? 0) <= 5).length;
 
   return (
     <div className="space-y-6">
@@ -50,4 +56,3 @@ export default async function DashboardItemsPage() {
     </div>
   );
 }
-

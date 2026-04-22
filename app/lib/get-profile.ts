@@ -22,6 +22,3 @@ export async function getProfile() {
 
   return data
 }
-
-console.log("SUPABASE URL:", process.env.NEXT_PUBLIC_SUPABASE_URL)
-

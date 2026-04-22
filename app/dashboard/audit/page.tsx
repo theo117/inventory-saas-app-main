@@ -13,7 +13,7 @@ export default async function AuditPage() {
   const supabase = await createSupabaseServerClient()
   const me = await getProfile()
 
-  if (!me) redirect("/sign-in")
+  if (!me) redirect("/login")
 
   const { data, error } = await supabase
     .from("audit_logs")

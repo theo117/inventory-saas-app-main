@@ -9,7 +9,7 @@ export default async function DashboardLayout({
 }) {
   const profile = await getProfile()
 
-  if (!profile) redirect("/sign-in")
+  if (!profile) redirect("/login")
 
   return (
     <div className="flex min-h-screen bg-zinc-100">

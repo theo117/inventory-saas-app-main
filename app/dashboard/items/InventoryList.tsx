@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useState } from "react";
 import { addItem, deleteItem, updateItem } from "./actions";
 
 type Item = {
@@ -12,33 +12,36 @@ type Item = {
 const DEFAULT_REORDER_THRESHOLD = 5;
 const THRESHOLDS_KEY = "inventory.reorderThresholds.v1";
 
+function loadThresholds(): Record<number, number> {
+  if (typeof window === "undefined") {
+    return {};
+  }
+
+  try {
+    const raw = window.localStorage.getItem(THRESHOLDS_KEY);
+    if (!raw) return {};
+
+    const parsed = JSON.parse(raw) as Record<string, unknown>;
+    const clean: Record<number, number> = {};
+
+    for (const [key, value] of Object.entries(parsed)) {
+      const id = Number(key);
+      const threshold = Number(value);
+      if (Number.isInteger(id) && Number.isFinite(threshold) && threshold >= 0) {
+        clean[id] = threshold;
+      }
+    }
+
+    return clean;
+  } catch {
+    return {};
+  }
+}
+
 export default function InventoryList({ items }: { items: Item[] }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [showLowOnly, setShowLowOnly] = useState(false);
-  const [thresholds, setThresholds] = useState<Record<number, number>>({});
-
-  useEffect(() => {
-    try {
-      const raw = window.localStorage.getItem(THRESHOLDS_KEY);
-      if (!raw) return;
-      const parsed = JSON.parse(raw) as Record<string, unknown>;
-      const clean: Record<number, number> = {};
-      for (const [key, value] of Object.entries(parsed)) {
-        const id = Number(key);
-        const threshold = Number(value);
-        if (Number.isInteger(id) && Number.isFinite(threshold) && threshold >= 0) {
-          clean[id] = threshold;
-        }
-      }
-      setThresholds(clean);
-    } catch {
-      setThresholds({});
-    }
-  }, []);
-
-  function getThreshold(itemId: number) {
-    return thresholds[itemId] ?? DEFAULT_REORDER_THRESHOLD;
-  }
+  const [thresholds, setThresholds] = useState<Record<number, number>>(loadThresholds);
 
   function setThreshold(itemId: number, value: number) {
     const safe = Number.isFinite(value) && value >= 0 ? value : 0;
@@ -47,14 +50,14 @@ export default function InventoryList({ items }: { items: Item[] }) {
     window.localStorage.setItem(THRESHOLDS_KEY, JSON.stringify(next));
   }
 
-  const filteredItems = useMemo(() => {
+  const filteredItems = items.filter((item) => {
     const q = searchTerm.trim().toLowerCase();
-    return items.filter((item) => {
-      const matchesSearch = !q || item.name.toLowerCase().includes(q);
-      const isLowStock = item.quantity <= getThreshold(item.id);
-      return matchesSearch && (!showLowOnly || isLowStock);
-    });
-  }, [items, searchTerm, showLowOnly, thresholds]);
+    const threshold = thresholds[item.id] ?? DEFAULT_REORDER_THRESHOLD;
+    const matchesSearch = !q || item.name.toLowerCase().includes(q);
+    const isLowStock = item.quantity <= threshold;
+
+    return matchesSearch && (!showLowOnly || isLowStock);
+  });
 
   return (
     <div className="space-y-6">
@@ -102,7 +105,7 @@ export default function InventoryList({ items }: { items: Item[] }) {
       {/* Inventory List */}
       <ul className="divide-y">
         {filteredItems.map((item) => {
-          const threshold = getThreshold(item.id);
+          const threshold = thresholds[item.id] ?? DEFAULT_REORDER_THRESHOLD;
           const isLowStock = item.quantity <= threshold;
           return (
           <li key={item.id} className="py-3 flex justify-between items-center">
