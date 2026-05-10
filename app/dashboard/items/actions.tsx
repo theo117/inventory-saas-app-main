@@ -1,15 +1,45 @@
 "use server"
 
+import { revalidatePath } from "next/cache"
 import { createSupabaseServerClient } from "@/app/lib/supabase-server"
 import { getProfile } from "@/app/lib/get-profile"
+
+function revalidateInventoryViews() {
+  revalidatePath("/dashboard")
+  revalidatePath("/dashboard/items")
+}
+
+function requireItemName(formData: FormData) {
+  const name = String(formData.get("name") ?? "").trim()
+  if (!name) {
+    throw new Error("Item name is required")
+  }
+
+  return name
+}
+
+function requireQuantity(formData: FormData) {
+  const quantity = Number(formData.get("quantity"))
+  if (!Number.isFinite(quantity) || quantity < 0) {
+    throw new Error("Quantity must be zero or greater")
+  }
+
+  return Math.floor(quantity)
+}
+
+function requireItemId(formData: FormData) {
+  const id = Number(formData.get("id"))
+  if (!Number.isInteger(id) || id <= 0) {
+    throw new Error("Valid item id is required")
+  }
+
+  return id
+}
 
 export async function getItems() {
   const supabase = await createSupabaseServerClient()
   const me = await getProfile()
   if (!me) throw new Error("Not authenticated")
-
-  
-
 
   const { data } = await supabase
     .from("items")
@@ -25,14 +55,22 @@ export async function addItem(formData: FormData) {
   const me = await getProfile()
   if (!me) throw new Error("Not authenticated")
 
-  const name = formData.get("name") as string
-  const quantity = Number(formData.get("quantity"))
+  const name = requireItemName(formData)
+  const quantity = requireQuantity(formData)
 
   await supabase.from("items").insert({
     user_id: me.id,
     name,
     quantity,
   })
+
+  await supabase.from("audit_logs").insert({
+    actor_id: me.id,
+    action: "ADDED_ITEM",
+    target: name,
+  })
+
+  revalidateInventoryViews()
 }
 
 function parseCsvRows(text: string): string[][] {
@@ -132,6 +170,8 @@ export async function importItems(formData: FormData) {
     action: "IMPORTED_ITEMS",
     target: `${inserts.length} rows`,
   })
+
+  revalidateInventoryViews()
 }
 
 export async function deleteItem(formData: FormData) {
@@ -142,21 +182,24 @@ export async function deleteItem(formData: FormData) {
     throw new Error("Not allowed")
   }
 
-  const id = Number(formData.get("id"))
+  const id = requireItemId(formData)
 
   const { data: item } = await supabase
     .from("items")
     .select("name")
     .eq("id", id)
+    .eq("user_id", me.id)
     .single<{ name: string }>()
 
-  await supabase.from("items").delete().eq("id", id)
+  await supabase.from("items").delete().eq("id", id).eq("user_id", me.id)
 
   await supabase.from("audit_logs").insert({
     actor_id: me.id,
     action: "DELETED_ITEM",
     target: item?.name ?? `Item ${id}`,
   })
+
+  revalidateInventoryViews()
 }
 
 export async function updateItem(formData: FormData) {
@@ -165,15 +208,21 @@ export async function updateItem(formData: FormData) {
 
   if (!me) throw new Error("Not authenticated")
 
-  const id = Number(formData.get("id"))
-  const name = formData.get("name") as string
-  const quantity = Number(formData.get("quantity"))
+  const id = requireItemId(formData)
+  const name = requireItemName(formData)
+  const quantity = requireQuantity(formData)
 
-  await supabase.from("items").update({ name, quantity }).eq("id", id)
+  await supabase
+    .from("items")
+    .update({ name, quantity })
+    .eq("id", id)
+    .eq("user_id", me.id)
 
   await supabase.from("audit_logs").insert({
     actor_id: me.id,
     action: "UPDATED_ITEM",
-    target: `Item ${id}`,
+    target: name,
   })
+
+  revalidateInventoryViews()
 }

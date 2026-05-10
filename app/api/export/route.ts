@@ -1,11 +1,10 @@
 import { NextResponse } from "next/server";
-import { createClient as createSupabaseClient, type SupabaseClient } from '@supabase/supabase-js';
 import { Parser } from "json2csv";
+import { createSupabaseServerClient } from "@/app/lib/supabase-server";
 
 export async function GET() {
-  const supabase = await createClient();
+  const supabase = await createSupabaseServerClient();
 
-  // 🔒 Ensure user is authenticated
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -14,20 +13,20 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  // 📦 Fetch products
   const { data, error } = await supabase
-    .from("items") // change to your table name if different
-    .select("*");
+    .from("items")
+    .select("id, name, quantity, created_at")
+    .eq("user_id", user.id)
+    .order("created_at", { ascending: false });
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
-  if (!data || data.length === 0) {
+  if (!data?.length) {
     return NextResponse.json({ error: "No data found" }, { status: 404 });
   }
 
-  // Convert JSON → CSV
   const parser = new Parser();
   const csv = parser.parse(data);
 
@@ -37,18 +36,4 @@ export async function GET() {
       "Content-Disposition": "attachment; filename=inventory-export.csv",
     },
   });
-}
-
-export function createClient(): SupabaseClient {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL ?? process.env.SUPABASE_URL;
-  const key =
-    process.env.SUPABASE_SERVICE_ROLE_KEY ??
-    process.env.NEXT_PUBLIC_SUPABASE_KEY ??
-    process.env.SUPABASE_ANON_KEY;
-
-  if (!url || !key) {
-    throw new Error('Missing SUPABASE_URL or SUPABASE_ANON_KEY / SERVICE_ROLE_KEY environment variables');
-  }
-
-  return createSupabaseClient(url, key);
 }
